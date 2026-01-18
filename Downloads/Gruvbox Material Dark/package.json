@@ -1,0 +1,13 @@
+{
+  "name": "gruvbox-material",
+  "title": "Gruvbox Material",
+  "displayName": "Gruvbox Material",
+  "theme": "ui",
+  "version": "0.1.0",
+  "description": "The best theme the world has ever know...",
+  "license": "MIT",
+  "engines": {
+    "mailspring": "*"
+  }
+}
+
