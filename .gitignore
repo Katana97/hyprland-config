@@ -1,0 +1,5 @@
+Downloads/*.AppImage
+Downloads/*.zip
+Downloads/*.tar.*
+Downloads/*.7z
+Downloads/*.gz
