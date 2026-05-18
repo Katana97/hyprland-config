@@ -50,20 +50,28 @@ Singleton {
     })()
 
 
-    onIsLowAndNotChargingChanged: {
-        if (!root.available || !isLowAndNotCharging) return;
+Timer {
+    id: lowBatteryDebounce
+    interval: 15000
+    repeat: false
+    onTriggered: {
+        if (!root.isLowAndNotCharging) return;
         Quickshell.execDetached([
-            "notify-send", 
-            Translation.tr("Low battery"), 
-            Translation.tr("Consider plugging in your device"), 
+            "notify-send",
+            Translation.tr("Low battery"),
+            Translation.tr("Consider plugging in your device"),
             "-u", "critical",
             "-a", "Shell",
             "--hint=int:transient:1",
         ])
-
         if (root.soundEnabled) Audio.playSystemSound("dialog-warning");
     }
+}
 
+onIsLowAndNotChargingChanged: {
+    if (!root.available || !isLowAndNotCharging) return;
+    lowBatteryDebounce.restart();
+}
     onIsCriticalAndNotChargingChanged: {
         if (!root.available || !isCriticalAndNotCharging) return;
         Quickshell.execDetached([
